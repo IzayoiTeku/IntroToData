@@ -49,7 +49,7 @@ def search():
         print(petID, ownerID)
         if petID != "":
             cursor = db.cursor()
-            sql = "SELECT * from pet where pet_id = \"" + petID + "\";"
+            sql = "SELECT * from pet where pet_id like '%%%s%%';" % petID;
             print(sql)
             cursor.execute(sql)
             data = cursor.fetchall()
@@ -59,7 +59,7 @@ def search():
         print("before ownerID")
         if ownerID != "":
             cursor = db.cursor()
-            sql = "SELECT * from pet where owner_id = \"" + ownerID + "\";"
+            sql = "SELECT * from pet where owner_id like '%%%s%%';" % ownerID;
             print(sql)
             cursor.execute(sql)
             data = cursor.fetchall()
