@@ -23,6 +23,10 @@ def index():
 def home():
     return render_template("home.html")
 
+@app.route('/about')
+def about():
+    return render_template("about.html")
+
 @app.route("/pet", methods = ["GET", "POST"]) #GET ONLY GETS DATA, POST POSTS IT TO THE SERVER
 def displayPet():
     if request.method == 'GET':
@@ -71,9 +75,36 @@ def search():
             #print("Else Statement")
     return render_template('search.html')
 
-@app.route('/register')
+@app.route('/register', methods = ['GET', 'POST'])
 def register():
-    return render_template("register.html")
+    if request.method == 'GET':
+        cursor = db.cursor()
+        sql = "SELECT dept_name as dept_name from department;" #needs fixed
+        print(sql)
+        cursor.execute(sql)
+        data = cursor.fetchall()
+        cursor.close()
+        edited = []
+        print(data)
+        for i in data:
+            edited.append(i[0])
+        return render_template('register.html', data = edited) 
+    if request.method == 'POST':
+        petId = request.form["pet_id"]
+        #request.from rest of attributes in order of db
+        cursor = db.cursor()
+        sql = "INSERT INTO pet VALUES (\"" + petId + "\",\"" + myName + "\",\"" + myDept + "\",\"" + myCredits + "\");" 
+        print(sql)
+        cursor.execute(sql)
+        cursor.close()
+
+        cursor = db.cursor()
+        sql = "SELECT * from pet"
+        cursor.execute(sql)
+        data = cursor.fetchall()
+        cursor.close()
+        print('')
+        return render_template('pet.html', data=data)
 
 app.run(host = "localhost", port = 8000)
 

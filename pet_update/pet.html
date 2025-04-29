@@ -151,21 +151,35 @@
 
 <header>
   <div class="logo">
-    Pet Adoption Platform
+    Pet Registration Platform
   </div>
   <nav>
-    <a href="#">Home</a>
+    <a href="home">Home</a>
     <a href="#">About Us</a>
     <a href="#">Services</a>
-    <a href="#">Adoption List</a>
+    <a href="search">Search Registry</a>
+    <a href="register">Register A Pet</a>
     <a href="#">Pages</a>
     <a href="#" class="donate-btn">Donate Now</a>
   </nav>
 </header>
 
 <main class="main-content">
-  <h1 style="font-size: 100px; color: #f6a400;">scirpt</h1>
-  <h2 style="margin-top: 10px;">scirpt</h2>
+  <h1 style="font-size: 100px; color: #f6a400;">Current Registry</h1>
+  <h2 style="margin-top: 10px;">Enter the pet or owner ID.</h2>
+  <div class = "container">
+    <table style ="border: 1;" cellpadding="5" cellspacing="5">
+        <tr><th>Pet ID</th><th>Name</th><th>Species</th><th>Breed</th><th>Color</th><th>Health Status ID</th><th>Behavior Status</th>
+          <th>Owner ID</th><th>Lost Status</th><th>Vet ID</th><th>DOB</th></tr>	
+        {% for row in data %}
+        <tr>
+            {% for d in row %}
+            <td>{{d}}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
   <p style="margin-top: 10px; max-width: 500px;">scirpt.</p>
   <a href="#" class="back-btn">Back To Homepage</a>
 </main>
@@ -173,7 +187,7 @@
 <footer>
   <div class="footer-section">
     <h3>Quick Links</h3>
-    <a href="#">About Us</a>
+    <a href="about">About Us</a>
     <a href="#">News Center</a>
     <a href="#">Contact Us</a>
     <a href="#">FAQs</a>
@@ -193,7 +207,7 @@
 </footer>
 
 <div class="credits">
-  &copy; 2025 Pet Adoption Platform. All Rights Reserved.
+  &copy; 2025 Pet Adoption Registration Platform. All Rights Reserved.
 </div>
 
 </body>
