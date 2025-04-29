@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 #flask is taking python and putting it in html
-from flaskext.mysql import MySQL
 import pymysql
 
 
@@ -22,10 +21,6 @@ def index():
 @app.route('/home')
 def home():
     return render_template("home.html")
-
-@app.route('/about')
-def about():
-    return render_template("about.html")
 
 @app.route("/pet", methods = ["GET", "POST"]) #GET ONLY GETS DATA, POST POSTS IT TO THE SERVER
 def displayPet():
@@ -106,7 +101,6 @@ def register():
         print('')
         return render_template('pet.html', data=data)
 
-app.run(host = "localhost", port = 8000)
 
 
 '''
