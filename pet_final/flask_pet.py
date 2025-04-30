@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 #flask is taking python and putting it in html
-from flaskext.mysql import MySQL
 import pymysql
 
 
@@ -106,6 +105,24 @@ def register():
             edited.append(i[0])
         print('')
         return render_template('pet.html', data=data)
+    
+
+
+    #its just for the test but it didnt work. 
+    @app.route('/lost', methods = ['GET', 'POST'])
+    def lost():
+        if request.method == 'GET':
+            return render_template('lost.html') 
+        if request.method == 'POST':
+            petId = request.form["pet_id"]
+            pSpecies = request.form["species"]
+            pBreed = request.form["breed"]
+            pColor = request.form["color"]
+           
+
+    
+
+
 
 app.run(host = "localhost", port = 8000)
 
